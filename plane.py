@@ -6,5 +6,3 @@ class Plane():
             self.plane_num = plane_num
     except:
         pass
-
-print(type(Plane('1')))

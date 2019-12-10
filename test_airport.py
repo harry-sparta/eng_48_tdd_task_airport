@@ -1,5 +1,5 @@
 import pytest
-from flight_trip import *
+from flighttrip import *
 
 ## 1.) Passenger --------------------------------------------------------------------------
     ## 1.1) Creating a Passenger
@@ -30,30 +30,36 @@ def test_create_plane():
 ## 3.) Flight trips ------------------------------------------------------------------------
     ## 2.1) Create a flight with no specific information
 def test_create_flight():
-    assert flight_trip('BA011', 'London', 'Edibourgh') != None
+    assert FlightTrip() is not None
 
     ## 2.2) Add a plane with number 'BA011 to flight trip
 def test_add_plane():
-    assert flight_trip('BA022','Lisbon', 'London').plane_num == 'BA022'
+    test_plane = FlightTrip()
+    test_plane.add_plane("BA022")
+    assert test_plane.plane_num == 'BA022'
 
     ## 2.3) Add a destination
 def test_add_destination():
-    assert flight_trip('BA009','Tokyo', 'London').destination == 'Tokyo'
+    test_plane = FlightTrip()
+    test_plane.add_destination("London")
+    assert test_plane.destination == 'London'
 
     ## 2.4) Add an origin
 def test_add_origin():
-    assert flight_trip('BA009','Tokyo', 'Berlin').origin == 'Berlin'
+    test_plane = FlightTrip()
+    test_plane.add_origin("Berlin")
+    assert test_plane.origin == 'Berlin'
 
     ## 2.5) Add a Passenger to a list of passengers
 # passenger = []  # test_set_up - list of passengers
 def test_add_passenger_to_list():
-    passenger_list = flight_trip('BA099', 'Glasgow', 'Norwich')
+    passenger_list = FlightTrip('BA099', 'Glasgow', 'Norwich')
     passenger_list.add_passenger('Jo', 'B99999')
     assert passenger_list.passenger_list[0].name == 'Jo'
 
     ## 2.6) Check if Passenger list is a list of objects that are Passengers
 def test_added_passenger_list_type():
-    passenger_list_test = flight_trip('BA099', 'Glasgow', 'Norwich')
+    passenger_list_test = FlightTrip('BA099', 'Glasgow', 'Norwich')
     passenger_list_test.add_passenger('Jo', 'B99999')
     assert 'class' in str(type(passenger_list_test.passenger_list[0]))
 
